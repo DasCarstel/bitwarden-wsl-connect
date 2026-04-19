@@ -1,0 +1,10 @@
+# Bitwarden SSH-Agent Bridge für ~/.bashrc
+# 
+# Diesen Block zu ~/.bashrc hinzufügen (vor dem letzten 'fi' oder am Ende)
+
+# Bitwarden SSH-Agent Bridge
+export PATH=~/.bin:$PATH
+export SSH_AUTH_SOCK=~/.ssh/sockets/bitwarden-agent.sock
+if command -v socat >/dev/null 2>&1; then
+    ~/.bin/ssh-agent-bitwarden start >/dev/null 2>&1 &
+fi
