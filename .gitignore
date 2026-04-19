@@ -1,5 +1,6 @@
 # Backup files
 *.bak
+*.bak.*
 *~
 
 # Temporary files
@@ -7,11 +8,6 @@
 *.swo
 .*.swp
 .*.swo
-
-# WSL config files (personal)
-.ssh/sockets/
-.bin/
-.bashrc.bak
 
 # OS specific
 .DS_Store
