@@ -91,7 +91,26 @@ ssh-add -l
 
 # SSH nutzen
 ssh user@server
+
+## SSH-Config für mehrere Keys nutzen
+
+Wenn du mehrere SSH-Keys im Bitwarden hast (>6), erstelle eine SSH-Config:
+
+```bash
+# ~/.ssh/config
+Host mein-server
+  HostName 10.0.10.10
+  User root
+  IdentitiesOnly yes
+  IdentityFile ~/.ssh/mein-server.pub
 ```
+
+Dann: `ssh mein-server`
+
+**Warum?**
+- Ohne Config probiert SSH alle Keys durch → Server bricht nach 6 Versuchen ab ("Too many authentication failures")
+- Mit `IdentityFile` wird nur der angegebene Key verwendet
+- Die .pub Datei muss existieren und zum Key im Bitwarden passen
 
 ## Troubleshooting
 

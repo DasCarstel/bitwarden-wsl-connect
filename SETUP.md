@@ -110,9 +110,30 @@ Wenn Keys angezeigt werden → **Erfolg!**
 
 ```bash
 ssh -T git@github.com
-# Oder mit einem eigenen Server
+
+# SSH-Config erstellen (empfohlen bei >6 Keys):
+mkdir -p ~/.ssh
+touch ~/.ssh/config
+chmod 600 ~/.ssh/config
+
+# Inhalt ~/.ssh/config:
+Host mein-server
+  HostName 10.0.10.10
+  User root
+  IdentitiesOnly yes
+  IdentityFile ~/.ssh/mein-server.pub
+
+# Dann:
+ssh mein-server
+
+# Oder ohne Config (kann bei vielen Keys fehlschlagen):
 ssh user@dein-server
 ```
+
+**Warum SSH-Config?**
+- Ohne Config probiert SSH alle Keys durch → Server bricht nach 6 Versuchen ab ("Too many authentication failures")
+- Mit `IdentityFile` wird nur der angegebene Key verwendet
+- Die .pub Datei muss existieren und zum Key im Bitwarden passen
 
 ## Funktionsweise
 
